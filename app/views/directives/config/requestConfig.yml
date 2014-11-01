@@ -1,0 +1,12 @@
+{{config.name}}:
+  request:
+    path: "{{config.request.path}}"
+    methods: {{config.request.methods}}
+    query: {{config.request.query | yamlAssociative:6 }}
+    request: {{config.request.request | yamlAssociative:6 }}
+    headers: {{config.request.headers | yamlAssociative:6 }}
+    body: {{config.request.body | yamlString:6 }}
+  response:
+    content: {{config.response.content | yamlString:6 }}
+    status: {{config.response.status}}
+    headers: {{config.response.headers | yamlAssociative:6 }}

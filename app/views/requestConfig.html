@@ -1,0 +1,124 @@
+<div class="row">
+    <div class="col-lg-8">
+        <h2>Request configuration</h2>
+    </div>
+    <div class="col-lg-4">
+        <h2>TuTu output</h2>
+    </div>
+</div>
+
+<div class="row">
+    <form class="form-horizontal" role="form" novalidate>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label for="requestPath" class="col-sm-4 control-label">Config name</label>
+                <div class="col-sm-8">
+                    <input ng-model="requestConfig.name" type="text" class="form-control" id="name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="requestPath" class="col-sm-4 control-label">Path</label>
+                <div class="col-sm-8">
+                    <input ng-model="requestConfig.request.path" type="text" class="form-control" id="requestPath">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Available Methods</label>
+                <div class="col-sm-8">
+                    <label class="checkbox-inline" ng-repeat="method in allowedMethods">
+                        <input type="checkbox" checklist-value="method" checklist-model="requestConfig.request.methods" /> {{ method }}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Request GET</label>
+                <div class="col-sm-8">
+                    <div ng-repeat="query in requestConfig.request.query" class="row request-query">
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" ng-model="query.key" >
+                        </div>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" ng-model="query.value" >
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-danger" ng-click="removeRequestParam('query', $index)">x</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" ng-click="addRequestParam('query')">Add new</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Request POST</label>
+                <div class="col-sm-8">
+                    <div ng-repeat="request in requestConfig.request.request" class="row request-request">
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" ng-model="request.key" >
+                        </div>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" ng-model="request.value" >
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-danger" ng-click="removeRequestParam('request', $index)">x</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" ng-click="addRequestParam('request')">Add new</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Request Headers</label>
+                <div class="col-sm-8">
+                    <div ng-repeat="header in requestConfig.request.headers" class="row request-headers">
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" ng-model="header.key" >
+                        </div>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" ng-model="header.value" >
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-danger" ng-click="removeRequestParam('headers', $index)">x</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" ng-click="addRequestParam('headers')">Add new</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <textarea class="form-control" rows="5" placeholder="Request body pattern" ng-model="requestConfig.request.body"></textarea>
+            <br />
+            <textarea class="form-control" rows="5" placeholder="Response content" ng-model="requestConfig.response.content"></textarea>
+            <br/>
+            <div class="form-group">
+                <label for="requestPath" class="col-sm-4 control-label">Response status</label>
+                <div class="col-sm-8">
+                    <input ng-model="requestConfig.response.status" type="number" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Response Headers</label>
+                <div class="col-sm-8">
+                    <div ng-repeat="header in requestConfig.response.headers" class="row request-headers">
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" ng-model="header.key" >
+                        </div>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" ng-model="header.value" >
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-danger" ng-click="removeResponseParam('headers', $index)">x</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" ng-click="addResponseParam('headers')">Add new</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <pre><code><request-config config="requestConfig" ></request-config></code></pre>
+
+            <br/>
+            <button class="btn btn-primary" ng-click="saveConfig(requestConfig)">Save</button>
+            <button class="btn" ng-click="back()">Back</button>
+
+            <button class="btn btn-danger pull-right" ng-click="resetConfig()">Reset</button>
+        </div>
+    </form>
+</div>

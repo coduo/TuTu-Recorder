@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2 ng-show="!requestConfigs.all().length">You dont have any request configs yet...</h2>
+                <div id="tutu-config">
+                    <div ng-repeat="requestConfig in requestConfigs.all()" class="config">
+                        <button class="btn btn-xs btn-danger pull-right remove" ng-click="remove($index)">x</button>
+                        <pre><code><request-config config="requestConfig" ></request-config></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-primary" ng-click="addNewConfig()">Add new request config</button>
+        <button class="btn btn-success" ng-click="download()">Download</button>
+    </div>
+</div>
