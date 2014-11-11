@@ -4,6 +4,14 @@
     </div>
     <div class="col-lg-4">
         <h2>TuTu output</h2>
+
+        <div>
+            <button class="btn btn-primary" ng-click="saveConfig(requestConfig)">Save</button>
+            <button class="btn" ng-click="back()">Back</button>
+
+            <button class="btn btn-danger pull-right" ng-click="resetConfig()">Reset</button>
+        </div>
+        <br/>
     </div>
 </div>
 
@@ -113,12 +121,6 @@
         </div>
         <div class="col-lg-4">
             <pre><code><request-config config="requestConfig" ></request-config></code></pre>
-
-            <br/>
-            <button class="btn btn-primary" ng-click="saveConfig(requestConfig)">Save</button>
-            <button class="btn" ng-click="back()">Back</button>
-
-            <button class="btn btn-danger pull-right" ng-click="resetConfig()">Reset</button>
         </div>
     </form>
 </div>

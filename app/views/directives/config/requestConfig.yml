@@ -7,6 +7,6 @@
     headers: {{config.request.headers | yamlAssociative:6 }}
     body: {{config.request.body | yamlString:6 }}
   response:
-    content: {{config.response.content | yamlString:6 }}
     status: {{config.response.status}}
     headers: {{config.response.headers | yamlAssociative:6 }}
+    content: {{config.response.content | yamlString:6 }}

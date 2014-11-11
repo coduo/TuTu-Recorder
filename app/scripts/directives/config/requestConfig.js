@@ -8,7 +8,7 @@
             scope: {
                 config: '=config'
             },
-            templateUrl: 'views/directives/config/requestConfig.yml'
+            templateUrl: '../../../views/directives/config/requestConfig.yml'
         };
     }]);
 })();

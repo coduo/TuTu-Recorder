@@ -15,16 +15,17 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'checklist-model'
+    'checklist-model',
+    'ui.bootstrap'
   ])
 .config(function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'views/main.html',
+            templateUrl: '../views/main.html',
             controller: 'MainCtrl'
         })
-        .when('/new' , {
-            templateUrl: 'views/requestConfig.html',
+        .when('/config' , {
+            templateUrl: '../views/requestConfig.html',
             controller: 'RequestConfigCtrl'
         })
         .otherwise({

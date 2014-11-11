@@ -1,0 +1,16 @@
+{
+    "name": "coduo/tutu-recorder",
+    "license": "MIT",
+    "type": "project",
+    "description": "TuTu Recorder",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/http-kernel": "~2.5",
+        "symfony/routing": "~2.5",
+        "guzzlehttp/guzzle": "3.8.*",
+        "symfony/options-resolver": "~2.5"
+    }
+}

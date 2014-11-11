@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
 
     var module = angular.module('tuTuRecorderApp');
@@ -5,25 +7,25 @@
     module.filter('yamlAssociative', [function() {
         return function (queryParams, indentionSize) {
             indentionSize = indentionSize || 0;
-            var indention = Array(indentionSize).join(" "),
+            var indention = new Array(indentionSize).join(' '),
                 i = 0,
-                result = "\n";
+                result = '\n';
 
-            indention = indention || "";
+            indention = indention || '';
 
             if (!queryParams.length) {
-                return "[]"
+                return '[]';
             }
 
-            for (i = 0; i < queryParams.length; i++) {
-                result += indention + '"' + queryParams[i].key + '"' + ": " + '"' + queryParams[i].value + '"';
+            for (i; i < queryParams.length; i++) {
+                result += indention + '"' + queryParams[i].key + '"' + ': ' + '"' + queryParams[i].value + '"';
 
                 if (i < queryParams.length - 1) {
-                    result += "\n";
+                    result += '\n';
                 }
             }
 
             return result;
-        }
+        };
     }]);
 })();
