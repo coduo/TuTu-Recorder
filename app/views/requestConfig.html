@@ -124,3 +124,19 @@
         </div>
     </form>
 </div>
+
+
+<script type="text/ng-template" id="requestConfigErrorModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Error</h3>
+    </div>
+    <div class="modal-body">
+        <p>
+            <strong>Can't add new request config to config repository because: </strong>
+            <pre><code>{{ error.message }}</code></pre>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+</script>

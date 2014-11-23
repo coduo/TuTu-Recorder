@@ -5,8 +5,8 @@
     var module = angular.module('tuTuRecorderApp');
 
     module.controller('RequestConfigCtrl',
-        ['$scope', 'ConfigRepository', 'RequestConfig', '$location', 'Storage',
-        function($scope, ConfigRepository, RequestConfig, $location, Storage) {
+        ['$scope', 'ConfigRepository', 'RequestConfig', '$location', 'Storage', '$modal',
+        function($scope, ConfigRepository, RequestConfig, $location, Storage, $modal) {
             $scope.requestConfig = Storage.hasCurrentConfig() ? Storage.getCurrentConfig()
                 : new RequestConfig();
 
@@ -53,11 +53,24 @@
             };
 
             $scope.saveConfig = function(requestConfig) {
-                ConfigRepository.addNewRequestConfig(requestConfig);
-                Storage.removeCurrentConfig();
-                console.log(Storage.getCurrentConfig());
-                this.resetConfig();
-                $location.path('/');
+                if (ConfigRepository.addNewRequestConfig(requestConfig)) {
+                    Storage.removeCurrentConfig();
+                    console.log(Storage.getCurrentConfig());
+                    this.resetConfig();
+                    $location.path('/');
+                } else {
+                    $modal.open({
+                        templateUrl: 'requestConfigErrorModalContent.html',
+                        controller: 'RequestConfigErrorModalCtrl',
+                        resolve: {
+                            error: function () {
+                                return ConfigRepository.getLastError();
+                            }
+                        }
+                    });
+
+                    ConfigRepository.clearLastError();
+                }
             };
 
             $scope.back = function() {
@@ -65,4 +78,17 @@
             };
         }
     ]);
+
+    module.controller('RequestConfigErrorModalCtrl', [
+        '$scope', '$modalInstance', 'error',
+        function ($scope, $modalInstance, message) {
+            $scope.error = {
+                message : message
+            };
+
+            $scope.close = function () {
+                $modalInstance.close();
+            };
+        }]
+    );
 })();
