@@ -8,7 +8,7 @@
         return function (string, indentionSize) {
             indentionSize = indentionSize || 0;
             var indention = new Array(indentionSize).join(' '),
-                result = '\n' + indention + '"""' + '\n',
+                result = '| \n',
                 stringLines = string.split('\n'),
                 i = 0;
 
@@ -17,14 +17,14 @@
             }
 
             if (stringLines.length === 1) {
-                return '"' + string +  '"';
+                return string;
             }
 
             for (i = 0; i < stringLines.length; i++) {
                 result += indention + stringLines[i] + '\n';
             }
 
-            result += indention + '"""';
+            result += indention;
 
             return result;
         };
