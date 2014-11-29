@@ -55,7 +55,6 @@
             $scope.saveConfig = function(requestConfig) {
                 if (ConfigRepository.addNewRequestConfig(requestConfig)) {
                     Storage.removeCurrentConfig();
-                    console.log(Storage.getCurrentConfig());
                     this.resetConfig();
                     $location.path('/');
                 } else {

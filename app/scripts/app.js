@@ -18,7 +18,7 @@ angular
     'checklist-model',
     'ui.bootstrap'
   ])
-.config(function ($routeProvider) {
+.config(function ($routeProvider, $provide) {
     $routeProvider
         .when('/', {
             templateUrl: '../views/main.html',

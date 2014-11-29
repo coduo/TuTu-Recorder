@@ -5,8 +5,8 @@
     var module = angular.module('tuTuRecorderApp');
 
     module.controller('MainCtrl', [
-        '$scope', '$location', 'ConfigRepository',
-        function ($scope, $location, ConfigRepository) {
+        '$rootScope', '$scope', '$location', 'ConfigRepository',
+        function ($rootScope, $scope, $location, ConfigRepository) {
             $scope.requestConfigs = ConfigRepository;
 
             $scope.addNewConfig = function() {
@@ -18,9 +18,16 @@
             };
 
             $scope.download = function() {
-                //alert('Sorry, this feature is not ready.');
-                //var blob = new Blob(["Config string"], {type: "text/plain;charset=utf-8"});
-                //saveAs(blob, "hello world.txt");
+                var configs = angular.element(document.querySelectorAll("request-config")),
+                    i = 0,
+                    configStr = '';
+
+                for (i; i < configs.length; i++) {
+                    configStr += angular.element(configs[i]).text() + "\n";
+                }
+
+                var blob = new Blob([configStr], {type: "text/plain;charset=utf-8"});
+                saveAs(blob, "responses.yml");
             };
         }
     ]);

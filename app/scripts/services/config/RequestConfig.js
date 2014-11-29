@@ -41,7 +41,7 @@
 
         RequestConfig.prototype.populateRequest = function(request) {
             this.name = this.escapeName(request.getUrl());
-            this.request.path = request.getUrl();
+            this.request.path = this.escapeUrl(request.getUrl());
             this.request.methods = [request.method];
             this.request.headers = request.headers;
             this.request.body = request.body;
@@ -80,6 +80,13 @@
             }
 
             return escapedName;
+        };
+
+        RequestConfig.prototype.escapeUrl = function(url) {
+            var anchor = document.createElement("a");
+            anchor.href = url;
+
+            return anchor.pathname;
         };
 
         return RequestConfig;

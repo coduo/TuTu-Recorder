@@ -4,7 +4,7 @@
 
     module.directive('requestConfig', [function() {
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: {
                 config: '=config'
             },
