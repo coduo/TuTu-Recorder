@@ -28,6 +28,10 @@ angular
             templateUrl: '../views/requestConfig.html',
             controller: 'RequestConfigCtrl'
         })
+        .when('/edit/:config' , {
+            templateUrl: '../views/requestConfig.html',
+            controller: 'RequestConfigCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });

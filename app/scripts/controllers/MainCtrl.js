@@ -13,6 +13,10 @@
                 $location.path('/config');
             };
 
+            $scope.edit = function(configName) {
+                $location.path('/edit/' + configName);
+            };
+
             $scope.remove = function(index) {
                 this.requestConfigs.remove(index);
             };

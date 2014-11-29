@@ -5,11 +5,18 @@
     var module = angular.module('tuTuRecorderApp');
 
     module.controller('RequestConfigCtrl',
-        ['$scope', 'ConfigRepository', 'RequestConfig', '$location', 'Storage', '$modal',
-        function($scope, ConfigRepository, RequestConfig, $location, Storage, $modal) {
-            $scope.requestConfig = Storage.hasCurrentConfig() ? Storage.getCurrentConfig()
-                : new RequestConfig();
+        ['$scope', 'ConfigRepository', 'RequestConfig', '$routeParams', '$location', 'Storage', '$modal',
+        function($scope, ConfigRepository, RequestConfig, $routeParams, $location, Storage, $modal) {
+            var editConfigName = $routeParams.config || null;
 
+            if (editConfigName == null) {
+                $scope.requestConfig = Storage.hasCurrentConfig() ? Storage.getCurrentConfig()
+                    : new RequestConfig();
+            } else {
+                $scope.requestConfig = ConfigRepository.getConfigByName(editConfigName);
+            }
+
+            $scope.isEdit = editConfigName != null;
             $scope.allowedMethods = ['GET', 'POST', 'PUT', 'PATCH', 'OPTIONS', 'HEAD', 'DELETE', 'TRACE', 'CONNECT'];
 
             $scope.addRequestParam = function(param) {
@@ -53,7 +60,11 @@
             };
 
             $scope.saveConfig = function(requestConfig) {
-                if (ConfigRepository.addNewRequestConfig(requestConfig)) {
+                var editFunction = (editConfigName == null)
+                    ? function(config) {return ConfigRepository.addNewRequestConfig(config);}
+                    : function(config) {return ConfigRepository.editRequestConfig(config); };
+
+                if (editFunction(requestConfig)) {
                     Storage.removeCurrentConfig();
                     this.resetConfig();
                     $location.path('/');
