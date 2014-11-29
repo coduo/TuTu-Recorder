@@ -26,6 +26,10 @@
                     i = 0,
                     configStr = '';
 
+                if (!configs.length) {
+                    return ;
+                }
+
                 for (i; i < configs.length; i++) {
                     configStr += angular.element(configs[i]).text() + "\n";
                 }
