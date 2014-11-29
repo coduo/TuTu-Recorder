@@ -16,10 +16,6 @@
                 return '""' ;
             }
 
-            if (stringLines.length === 1) {
-                return string;
-            }
-
             for (i = 0; i < stringLines.length; i++) {
                 result += indention + stringLines[i] + '\n';
             }

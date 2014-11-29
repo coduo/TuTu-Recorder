@@ -69,7 +69,8 @@
                     {search: '&', replace: '_'},
                     {search: '-', replace: '_'},
                     {search: '#', replace: '_'},
-                    {search: ':', replace: '_'}
+                    {search: ':', replace: '_'},
+                    {search: '=', replace: '_'}
                 ],
                 escapedName = name;
 
