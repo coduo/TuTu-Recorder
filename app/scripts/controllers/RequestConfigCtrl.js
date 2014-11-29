@@ -13,7 +13,22 @@
                 $scope.requestConfig = Storage.hasCurrentConfig() ? Storage.getCurrentConfig()
                     : new RequestConfig();
             } else {
-                $scope.requestConfig = ConfigRepository.getConfigByName(editConfigName);
+                if (!ConfigRepository.hasConfigWithName(editConfigName)) {
+                    $modal.open({
+                        templateUrl: 'requestConfigErrorModalContent.html',
+                        controller: 'RequestConfigErrorModalCtrl',
+                        resolve: {
+                            header: function() { return "Error"; },
+                            error: function () {
+                                return "Config with name \"" + editConfigName + "\" does not exists.";
+                            }
+                        }
+                    });
+                    $scope.requestConfig = new RequestConfig();
+                    editConfigName = null;
+                } else {
+                    $scope.requestConfig = ConfigRepository.getConfigByName(editConfigName);
+                }
             }
 
             $scope.isEdit = editConfigName != null;
@@ -73,6 +88,7 @@
                         templateUrl: 'requestConfigErrorModalContent.html',
                         controller: 'RequestConfigErrorModalCtrl',
                         resolve: {
+                            header: function() { return "Can't add new request config to config repository because: "; },
                             error: function () {
                                 return ConfigRepository.getLastError();
                             }
@@ -91,8 +107,9 @@
 
     module.controller('RequestConfigErrorModalCtrl', [
         '$scope', '$modalInstance', 'error',
-        function ($scope, $modalInstance, message) {
+        function ($scope, $modalInstance, header, message) {
             $scope.error = {
+                header: header,
                 message : message
             };
 

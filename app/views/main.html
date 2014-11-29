@@ -14,8 +14,8 @@
                             <button ng-hide="!requestConfig.display" type="button" class="btn btn-xs btn-primary pull-right toggle" ng-click="requestConfig.display = false"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> hide</button>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="panel-body">
-                            <pre ng-show="requestConfig.display"><code><request-config config="requestConfig" ></request-config></code></pre>
+                        <div class="panel-body" ng-show="requestConfig.display">
+                            <pre><code><request-config config="requestConfig" ></request-config></code></pre>
                         </div>
                     </div>
                 </div>
@@ -25,8 +25,8 @@
     <div class="col-lg-6">
         <div class="panel panel-default">
             <div class="panel-body">
-                <button class="btn btn-primary" ng-click="addNewConfig()">Add new request config</button>
-                <button class="btn btn-success" ng-click="download()">Download</button>
+                <button class="btn btn-primary" ng-click="addNewConfig()"><span class="glyphicon glyphicon-plus"></span> new request config</button>
+                <button class="btn btn-success" ng-click="download()"><span class="glyphicon glyphicon-download-alt"></span> download</button>
             </div>
         </div>
         <div ng-controller="RequestCtrl">

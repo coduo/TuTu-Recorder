@@ -135,8 +135,10 @@
     </div>
     <div class="modal-body">
         <p>
-            <strong>Can't add new request config to config repository because: </strong>
-            <pre><code>{{ error.message }}</code></pre>
+            <strong>{{ error.header }}</strong>
+        </p>
+        <p>
+            {{ error.message }}
         </p>
     </div>
     <div class="modal-footer">
